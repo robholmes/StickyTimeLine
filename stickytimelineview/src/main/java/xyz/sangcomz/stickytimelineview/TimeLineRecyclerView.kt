@@ -1,8 +1,8 @@
 package xyz.sangcomz.stickytimelineview
 
 import android.content.Context
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.RecyclerView
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.RecyclerView
 import android.util.AttributeSet
 import xyz.sangcomz.stickytimelineview.model.RecyclerViewAttr
 
@@ -23,13 +23,13 @@ import xyz.sangcomz.stickytimelineview.model.RecyclerViewAttr
  * limitations under the License.
  */
 
-class TimeLineRecyclerView(context: Context?, attrs: AttributeSet?) : RecyclerView(context, attrs) {
+class TimeLineRecyclerView(context: Context, attrs: AttributeSet?) : RecyclerView(context, attrs) {
 
     private var recyclerViewAttr: RecyclerViewAttr? = null
 
     init {
         attrs?.let {
-            val a = context?.theme?.obtainStyledAttributes(
+            val a = context.theme?.obtainStyledAttributes(
                     attrs,
                     R.styleable.TimeLineRecyclerView,
                     0, 0)

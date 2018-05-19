@@ -6,7 +6,7 @@ import android.graphics.Paint
 import android.graphics.Rect
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
@@ -46,10 +46,10 @@ class RecyclerSectionItemDecoration(
      * There is a difference in top offset between sections and not sections.
      */
     override fun getItemOffsets(
-        outRect: Rect,
-        view: View,
-        parent: RecyclerView,
-        state: RecyclerView.State?
+            outRect: Rect,
+            view: View,
+            parent: RecyclerView,
+            state: RecyclerView.State
     ) {
         super.getItemOffsets(
             outRect,
@@ -83,7 +83,7 @@ class RecyclerSectionItemDecoration(
      * @param parent RecyclerView this ItemDecoration is drawing into
      * @param state The current state of RecyclerView.
      */
-    override fun onDrawOver(c: Canvas, parent: RecyclerView, state: RecyclerView.State?) {
+    override fun onDrawOver(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
         super.onDrawOver(
             c,
             parent,
@@ -94,7 +94,7 @@ class RecyclerSectionItemDecoration(
         drawLine(c, parent)
 
         val childInContact = getChildInContact(parent, headerOffset * 2)
-        val contractPosition = parent.getChildAdapterPosition(childInContact)
+        val contractPosition = if (childInContact == null) -1 else parent.getChildAdapterPosition(childInContact)
 
         if (getIsSection(contractPosition) && recyclerViewAttr.isSticky) {
             childInContact?.let {
